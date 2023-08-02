@@ -1,8 +1,7 @@
 import java.util.*;
 
 public class Calculator extends Product {
-    private String name = null;
-    private double cost = 0, account = 0, amount = 0;
+    private double account, amount;
     ArrayList<Product> products = new ArrayList<>();
     public Calculator() {}
     public void count(int numberOfPeople) {
