@@ -7,10 +7,8 @@ public class Product {
         this.cost = cost;
     }
 
-    public Product() {
-    }
-
     public String getName() {
         return name;
     }
 }
+

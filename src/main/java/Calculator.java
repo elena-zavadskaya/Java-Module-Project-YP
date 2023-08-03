@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Calculator extends Product {
+public class Calculator {
     private double account, amount;
     ArrayList<Product> products = new ArrayList<>();
     public Calculator() {}

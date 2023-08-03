@@ -3,22 +3,25 @@ import java.util.Scanner;
 public class UserInterface {
     public static int splitTheBill() {
         Scanner scanner = new Scanner(System.in);
-        int numberOfPeople = 0;
+        int numberOfPeople;
         System.out.println("На какое количество человек необходимо разделить счёт?");
 
-        if (scanner.hasNextInt()) {
-            numberOfPeople = scanner.nextInt();
-        } else {
+        while (!scanner.hasNextInt()) {
             System.out.println("Вы ввели что-то не то. Давайте попробуем снова.");
-            splitTheBill();
+            System.out.println("На какое количество человек необходимо разделить счёт?");
+            scanner.next();
         }
+        numberOfPeople = scanner.nextInt();
 
-        if (numberOfPeople == 1) {
-            System.out.println("В этом случае нет смысла ничего считать и делить. Число должно быть больше 1. Давайте попробуем снова.");
-            splitTheBill();
-        } else if (numberOfPeople < 1) {
-            System.out.println("Это некорректное значение для подсчёта. Число должно быть больше 1. Давайте попробуем снова.");
-            splitTheBill();
+        while (numberOfPeople <= 1) {
+            System.out.println("Число должно быть больше 1. Давайте попробуем снова.");
+            System.out.println("На какое количество человек необходимо разделить счёт?");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Вы ввели что-то не то. Давайте попробуем снова.");
+                System.out.println("На какое количество человек необходимо разделить счёт?");
+                scanner.next();
+            }
+            numberOfPeople = scanner.nextInt();
         }
         return numberOfPeople;
     }
@@ -36,19 +39,24 @@ public class UserInterface {
         }
 
         System.out.println("Введите стоимость товара в формате [рубли,копейки].");
-        double cost = 0;
+        double cost;
 
-        if (scanner.hasNextDouble()) {
-            cost = scanner.nextDouble();
-        } else {
+        while (!scanner.hasNextDouble()) {
             System.out.println("Вы ввели что-то не то. Давайте попробуем снова.");
-            requestProductInformation(calculator, numberOfPeople);
+            System.out.println("Введите стоимость товара в формате [рубли,копейки].");
+            scanner.next();
         }
+        cost = scanner.nextDouble();
 
-        // Добавила условие на проверку значения
-        if (cost <= 0) {
+        while (cost <= 0) {
             System.out.println("Стоимость товара не может быть нулевой или отрицательной. Давайте попробуем снова.");
-            requestProductInformation(calculator, numberOfPeople);
+            System.out.println("Введите стоимость товара в формате [рубли,копейки].");
+            while (!scanner.hasNextDouble()) {
+                System.out.println("Вы ввели что-то не то. Давайте попробуем снова.");
+                System.out.println("Введите стоимость товара в формате [рубли,копейки].");
+                scanner.next();
+            }
+            cost = scanner.nextDouble();
         }
 
         calculator.addNewProduct(name, cost);
