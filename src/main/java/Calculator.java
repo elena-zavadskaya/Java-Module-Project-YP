@@ -23,6 +23,13 @@ public class Calculator {
             System.out.println(x.getName());
         }
 
+        String rublesMessage = editRublesMessage();
+
+        String messageTemplate = "Каждый человек должен заплатить %.2f %s.";
+        System.out.printf((messageTemplate) + "%n", account, rublesMessage);
+    }
+
+    public String editRublesMessage() {
         String rublesMessage = "рубль";
         int accountFormat1 = (int) account % 100;
         int accountFormat2 = (int) account % 10;
@@ -36,8 +43,6 @@ public class Calculator {
         } else if (accountFormat2 >= 5) {
             rublesMessage = "рублей";
         }
-
-        String messageTemplate = "Каждый человек должен заплатить %.2f %s.";
-        System.out.printf((messageTemplate) + "%n", account, rublesMessage);
+        return rublesMessage;
     }
 }
